@@ -55,3 +55,6 @@ def restart_game():
             return False
         else:
             return True
+
+
+start_game()
