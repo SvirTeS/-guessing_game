@@ -14,8 +14,9 @@ def gamer_num():
             print('А может быть все-таки введем целое число от 1 до 100?')
 
 
-def compare():
-    count = 0
+def compare(start_num, end_num):
+    num = random.randint(start_num, end_num)
+    count = 1
     while True:
         gnum = gamer_num()
         if gnum < num:
@@ -29,9 +30,28 @@ def compare():
             break
 
 
-num = random.randint(1, 100)
-print('Добро пожаловать в числовую угадайку\nВведите ваше число\n')
-compare()
+def start_game():
+    print('Добро пожаловать в числовую угадайку\nВведите ваше число\n')
+    while True:
+        print('Укажите, в каком диапазоне Вы готовы угадывать числа\n(В пределах от 1 до 100):\n')
+        x, y = gamer_num(), gamer_num()
+        if x > y:
+            x, y = y, x
+        print('Введите число от', x, 'до', y, '\n')
+        compare(x, y)
+        if restart_game():
+            continue
+        else:
+            break
 
 
-
+def restart_game():
+    ans = input('Продолжить ("да" или "нет")?\n')
+    while True:
+        if ans not in ('да', 'нет'):
+            ans = input('Еще раз ("да"или "нет")?\n')
+        elif ans in ('нет'):
+            print('До новых встреч!!!')
+            return False
+        else:
+            return True
